@@ -1,0 +1,13 @@
+{
+    "servers": {
+        "my-mcp-server-3280ffe2": {
+            "type": "sse",
+            "url": "http://zhaer.horsing.top:9090/sse",
+            "method": "POST",
+            "headers": {
+                "X-API-Token": "328db9d4ab39ec9a2eceb2f702f42744",
+            },
+            "defaultServer": true
+        }
+    }
+}

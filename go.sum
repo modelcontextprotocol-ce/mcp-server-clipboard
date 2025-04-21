@@ -1,4 +1,14 @@
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
-github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421061645-6d9b18ec3068 h1:vivSd9+c9wBjFpJUWVyhm/ieio0YhiJ06roHMbdpi+U=
-github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421061645-6d9b18ec3068/go.mod h1:LZjOgUfCLOl0vx4qtatLzmt9OAaQ5TueTFQsst88LNA=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421093031-778b54fcd34e h1:4Fp3CHVtQawBCrzRslEDl7KzZIZHLg7HEZl/8/mfMc4=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421093031-778b54fcd34e/go.mod h1:BXMg+umMghGgP09A+eLyW+Ni7bZIKZfmSY/mcAxM2v0=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421112003-009ac6e72546 h1:pbl2ZQ2sIs+jmfbjirX1ViK2wtHSiNkpRymdrA6BksI=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421112003-009ac6e72546/go.mod h1:BXMg+umMghGgP09A+eLyW+Ni7bZIKZfmSY/mcAxM2v0=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421120829-01dac3e8bf62 h1:3uST0b6mAWMgg/Y8G+FXFR7ypdd+OoOn7KUzkbNVzRE=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250421120829-01dac3e8bf62/go.mod h1:BXMg+umMghGgP09A+eLyW+Ni7bZIKZfmSY/mcAxM2v0=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250422004501-79de082c6889 h1:L5Gv/CnRlTc9/PEqkTb/naCVyMM8BcvERDTuiyScl2s=
+github.com/modelcontextprotocol-ce/go-sdk v0.0.0-20250422004501-79de082c6889/go.mod h1:BXMg+umMghGgP09A+eLyW+Ni7bZIKZfmSY/mcAxM2v0=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405 h1:yhCVgyC4o1eVCa2tZl7eS0r+SDo693bJlVdllGtEeKM=
+gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=

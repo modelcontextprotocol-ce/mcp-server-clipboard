@@ -21,21 +21,32 @@ func main() {
 	// Create clipboard handler
 	clipboard := NewClipboardHandler()
 
-	provider := stream.NewHTTPServerTransportProvider(fmt.Sprintf(":%d", *port))
+	addr := fmt.Sprintf(":%d", *port)
+
+	provider := stream.NewHTTPServerTransportProvider(addr)
 
 	// Create a new MCP server
 	srv := server.NewSync(provider).
 		WithCapabilities(spec.NewServerCapabilitiesBuilder().Resources(true, false, false).Tools(true, false).Build()).
 		WithServerInfo(spec.Implementation{Name: "MCP Clipboard Server", Version: "1.0.0"}).
-		WithResources(spec.Resource{URI: "res:sys/clipboard", Name: "clipboard", Description: "Get clipboard content", MimeType: "text/plain"}).
-		WithTools(spec.Tool{Name: "clipboard_update", Description: "Update clipboard with user input"}).(server.SyncBuilder).
-		WithResourceHandler(clipboard.Get).
+		WithTools(
+			spec.Tool{
+				Name: "clipboard_update", Description: "Update clipboard with user input",
+				InputSchema: []byte(`{"type":"object","properties":{"content":{"type":"string"}}}`),
+			},
+			spec.Tool{
+				Name: "clipboard_get", Description: "Get current clipboard content",
+				InputSchema: []byte(`{}`),
+			},
+		).
+		WithAPIToken("328db9d4ab39ec9a2eceb2f702f42744").(server.SyncBuilder).
 		WithToolHandler("clipboard_update", clipboard.Patch).
+		WithToolHandler("clipboard_get", clipboard.Get).
 		Build()
 
 	// Start the server
 	go func() {
-		log.Printf("Starting MCP server on port %d", *port)
+		log.Printf("Starting MCP server on: %s", addr)
 		if err := srv.Start(); err != nil {
 			log.Fatalf("Server error: %v", err)
 		}

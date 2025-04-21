@@ -1,17 +1,26 @@
 # MCP Server Clipboard
 
-A Model Context Protocol (MCP) server that provides clipboard functionality.
+A Model Context Protocol (MCP) server that provides clipboard functionality. This implementation follows the MCP specification and offers tools for reading and writing clipboard content.
 
 ## Features
 
-- Implements a clipboard resource for reading and writing clipboard content
-- Provides a clipboard settings resource for configuring clipboard behavior
-- Port configuration via command-line arguments
+- Simple, lightweight MCP-compliant clipboard server
+- Secure API token authentication
+- Configurable clipboard size limits
+- Tools for clipboard content management:
+  - `clipboard_update`: Update clipboard content
+  - `clipboard_get`: Retrieve clipboard content
+- Configurable port via command-line arguments
 
 ## Installation
 
 ```bash
-go get github.com/modelcontextprotocol-ce/mcp-server-clipboard
+# Clone the repository
+git clone https://github.com/yourusername/mcp-server-clipboard.git
+cd mcp-server-clipboard
+
+# Install dependencies
+go mod download
 ```
 
 ## Usage
@@ -19,32 +28,60 @@ go get github.com/modelcontextprotocol-ce/mcp-server-clipboard
 ### Running the server
 
 ```bash
-# Run with default port (8080)
-go run main.go
+# Run with default port (9001)
+go run *.go
 
 # Run with a specific port
-go run main.go -port 9000
+go run *.go -port 9000
 ```
 
-### API Endpoints
+### MCP Tools
 
-#### Clipboard Resource
+The server provides the following MCP tools:
 
-- **GET /clipboard** - Get current clipboard content
-  - Response: `{"content": "clipboard content"}`
+#### clipboard_update
 
-- **PATCH /clipboard** - Update clipboard content
-  - Request: `{"content": "new clipboard content"}`
-  - Response: `{"content": "new clipboard content"}`
+Updates the clipboard content with user input.
 
-#### Clipboard Settings Resource
+- **Input Schema**: `{"type":"object","properties":{"content":{"type":"string"}}}`
+- **Example**:
+  ```json
+  {
+    "content": "Hi, MCP!"
+  }
+  ```
 
-- **GET /clipboard_settings** - Get current clipboard settings
-  - Response: `{"max_size": 10000}`
+#### clipboard_get
 
-- **PATCH /clipboard_settings** - Update clipboard settings
-  - Request: `{"max_size": 20000}`
-  - Response: `{"max_size": 20000}`
+Retrieves the current clipboard content.
+
+- **Input Schema**: `{}`
+- **Example Response**:
+  ```json
+  {
+    "type": "text",
+    "text": "Hi, MCP!"
+  }
+  ```
+
+### Authentication
+
+All requests to the MCP server require authentication using the API token:
+
+```
+Authorization: Bearer 328db9d4ab39ec9a2eceb2f702f42744
+```
+
+## Configuration
+
+The clipboard server can be configured with the following settings:
+
+- **Port**: The port on which the server listens (default: 9001)
+- **Clipboard Size**: Maximum size of clipboard content in bytes (default: 10,000 bytes)
+
+## Implementation Details
+
+This server implements the Model Context Protocol (MCP) specification using the `github.com/modelcontextprotocol-ce/go-sdk` library. It uses a synchronous server model with HTTP transport for communication.
 
 ## License
 

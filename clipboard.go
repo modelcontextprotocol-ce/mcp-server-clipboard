@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"sync"
@@ -31,7 +32,7 @@ func NewClipboardHandler() *ClipboardHandler {
 }
 
 // Get returns the current clipboard content
-func (c *ClipboardHandler) Get(ctx context.Context, uri string) ([]byte, error) {
+func (c *ClipboardHandler) Get(ctx context.Context, params []byte) (interface{}, error) {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
 
@@ -54,10 +55,15 @@ func (c *ClipboardHandler) Patch(ctx context.Context, params []byte) (interface{
 		return nil, fmt.Errorf("content exceeds maximum size of %d bytes", c.settings.MaxSize)
 	}
 
-	// Update clipboard content
-	c.content = content
+	var p struct {
+		Content string `json:"content"`
+	}
+	if err := json.Unmarshal(params, &p); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal params: %w", err)
+	}
 
-	return &spec.TextContent{
-		Text: c.content,
-	}, nil
+	// Update clipboard content
+	c.content = p.Content
+
+	return true, nil
 }
